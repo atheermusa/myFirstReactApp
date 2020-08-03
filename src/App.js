@@ -1,4 +1,5 @@
 import React from 'react'
+import './Stylesheet.css'
 
 class App extends React.Component {
     render() {
@@ -32,13 +33,14 @@ class App extends React.Component {
              <h2>Genre: {otisRedding.genre}</h2>
              <p>{otisRedding.description}</p>
 
+             <div className='dicographyContainer'>
              {otisRedding.discography.map(item => { 
-                    return <div><h3>{item.albumTitle}</h3>
-                    <h3>{item.albumYear}</h3>
-                    <img src={item.albumCover}></img>
+                    return <div className='albumContainer'><h3 className='albumTitle'>{item.albumTitle}</h3>
+                    <h3 className='albumYear'>{item.albumYear}</h3>
+                    <div className='albumCover'><img src={item.albumCover}></img></div>
                     </div>
                 })}
-
+            </div>
             </div>
         )
     }

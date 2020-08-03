@@ -1,0 +1,27 @@
+* {
+    background-color: aqua;
+}
+
+.discographyContainer{
+    display: flexbox;
+}
+
+.albumContainer{
+}
+
+.albumTitle{
+    display: flex;
+    justify-content: center;
+}
+
+.albumYear{
+    display: flex;
+    justify-content: center;
+}
+
+.albumCover{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: auto;
+}
