@@ -3,10 +3,11 @@
 }
 
 .discographyContainer{
-    display: flexbox;
+height: 100vh;
 }
 
 .albumContainer{
+
 }
 
 .albumTitle{
@@ -23,5 +24,6 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    height: auto;
+    max-width: 100%;
+        max-height: 100%;
 }
