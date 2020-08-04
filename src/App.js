@@ -1,5 +1,8 @@
-import React from 'react'
-import './Stylesheet.css'
+import React from 'react';
+import './Stylesheet.css';
+import { Switch, Route } from 'react-router-dom';
+import { ProfileContainer, AlbumsContainer } from './containers';
+import { NavBar, NotFound404 } from './components';
 
 class App extends React.Component {
 
@@ -9,12 +12,12 @@ class App extends React.Component {
         likeStatus: 'Click to like!',
         artistDescription: 'Otis Ray Redding Jr. (September 9, 1941 – December 10, 1967) was an American singer, songwriter, record producer, arranger, and talent scout. He is considered one of the greatest singers in the history of American popular music and a seminal artist in soul music and rhythm and blues. Reddings style of singing gained inspiration from the gospel music that preceded the genre. His singing style influenced many other soul artists of the 1960s.',
         albums: [
-            {likeStatus: "Click to like!", id: 0, albumTitle:'Pain In My Heart', albumYear:'1964',albumCover:'https://img.discogs.com/fSKUF8M9f1Y67Z6dryv-RQRNihE=/fit-in/600x609/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1039451-1440145365-5195.jpeg.jpg'},
-            {likeStatus: "Click to like!", id: 1, albumTitle:'Otis Blue / Otis Redding Sings Soul', albumYear:'1965',albumCover:'https://img.discogs.com/jghTn8tI_bG9gSm__k_UToRGEC0=/fit-in/600x613/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2606974-1515015488-1993.jpeg.jpg'},
-            {likeStatus: "Click to like!", id: 2, albumTitle:'The Great Otis Redding Sings Soul Ballads', albumYear:'1965',albumCover:'https://img.discogs.com/A1zCSrUy29LN2HrCfMFu6RXXZUc=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1039653-1408406065-1887.jpeg.jpg'},
-            {likeStatus: "Click to like!", id: 3, albumTitle:'The Soul Album', albumYear:'1966',albumCover:'https://img.discogs.com/7TdCNBwpVE9msjzsmR0mx5Gz8Ho=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2795239-1301360207.jpeg.jpg'},
-            {likeStatus: "Click to like!", id: 4, albumTitle:'The Otis Redding Dictionary Of Soul - Complete & Unbelievable', albumYear:'1996',albumCover:'https://img.discogs.com/ipDJ3n7CccOk7ZHP0hEkCDg7p5g=/fit-in/596x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2537596-1562417983-2046.jpeg.jpg'},
-            {likeStatus: "Click to like!", id: 5, albumTitle:'King & Queen', albumYear:'1967',albumCover:'https://img.discogs.com/qmGi4Rcb6KxpW-J78cANdfsyoms=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2563985-1350328191-3837.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'Pain In My Heart', albumYear:'1964',albumCover:'https://img.discogs.com/fSKUF8M9f1Y67Z6dryv-RQRNihE=/fit-in/600x609/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1039451-1440145365-5195.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'Otis Blue / Otis Redding Sings Soul', albumYear:'1965',albumCover:'https://img.discogs.com/jghTn8tI_bG9gSm__k_UToRGEC0=/fit-in/600x613/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2606974-1515015488-1993.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'The Great Otis Redding Sings Soul Ballads', albumYear:'1965',albumCover:'https://img.discogs.com/A1zCSrUy29LN2HrCfMFu6RXXZUc=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1039653-1408406065-1887.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'The Soul Album', albumYear:'1966',albumCover:'https://img.discogs.com/7TdCNBwpVE9msjzsmR0mx5Gz8Ho=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2795239-1301360207.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'The Otis Redding Dictionary Of Soul - Complete & Unbelievable', albumYear:'1996',albumCover:'https://img.discogs.com/ipDJ3n7CccOk7ZHP0hEkCDg7p5g=/fit-in/596x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2537596-1562417983-2046.jpeg.jpg'},
+            {likeStatus: "Click to like!", albumTitle:'King & Queen', albumYear:'1967',albumCover:'https://img.discogs.com/qmGi4Rcb6KxpW-J78cANdfsyoms=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2563985-1350328191-3837.jpeg.jpg'},
         ]
     };
 
@@ -26,11 +29,30 @@ class App extends React.Component {
 
     render() {
 
-       
+       //routing for three pages: home, profile,albums
 
         return (
             <div>
-            <h1>{this.state.artistName}</h1>
+                <header>
+                    <NavBar />
+                    <h1>{this.state.artistName}</h1>
+                </header>
+            
+            <main>
+                <section>
+                    <Switch>
+                      <Route exact path="/" render={() => <h1 id="welcome">Welcome</h1>} />
+
+                      <Route path="/profile" component={ProfileContainer} />
+
+                      <Route path="/albums" component={AlbumsContainer} />
+
+                      <Route component={NotFound404} />
+                        
+                    </Switch>
+                </section>
+
+            </main>
 
              <h2>Genre: {this.state.artistGenre}</h2>
              <p>{this.state.artistDescription}</p>
