@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/index.js',
     output:{
         path: path.resolve('dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     devtool: 'source-maps',
     module: {
@@ -21,6 +22,7 @@ module.exports = {
         hot: true,
         open: true,
         port: 8000,
+        historyApiFallback: true,
         watchContentBase: true
     },
     plugins: [
